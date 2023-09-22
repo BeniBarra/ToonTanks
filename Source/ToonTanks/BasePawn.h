@@ -22,6 +22,15 @@ private:
 	UPROPERTY()
 	class UCapsuleComponent* CapsuleComp;
 
+	UPROPERTY()
+	UStaticMeshComponent* baseMesh;
+
+	UPROPERTY()
+	UStaticMeshComponent* turretMesh;
+
+	UPROPERTY()
+	USceneComponent* ProjectileSpawnPoint;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
