@@ -6,6 +6,7 @@
 #include "Camera/CameraComponent.h"
 #include "Components/InputComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "DrawDebugHelpers.h"
 
 ATank::ATank()
 {
@@ -22,17 +23,57 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
     Super::SetupPlayerInputComponent(PlayerInputComponent);
 
     PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
+    PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ATank::Turn);
 
+}
+
+// Called when the game starts or when spawned
+void ATank::BeginPlay()
+{
+	Super::BeginPlay();
+
+    PlayerControllerRef = Cast<APlayerController>(GetController());
+}
+
+// Called every frame
+void ATank::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+    if(PlayerControllerRef)
+    {
+        FHitResult HitResult;
+        PlayerControllerRef->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, HitResult);
+
+        DrawDebugSphere(
+            GetWorld(), 
+            HitResult.ImpactPoint, 
+            20.f, 
+            12, 
+            FColor::Red, 
+            false, 
+            -1.f);
+    }
 }
 
 void ATank::Move(float Value)
 {
     FVector DeltaLocation(0.f);
 
-    // X = Value * DeltaTime * Speed
+    // X = Value * Speed * DeltaTime
     DeltaLocation.X = Value * Speed * UGameplayStatics::GetWorldDeltaSeconds(this);
 
     UE_LOG(LogTemp, Warning, TEXT("%f"), Value);
 
     AddActorLocalOffset(DeltaLocation);
+}
+
+void ATank::Turn(float Value)
+{
+    FRotator DeltaRotation = FRotator::ZeroRotator;
+    //Yaw = Value * TurnRate * DeltaTime
+    DeltaRotation.Yaw = Value * TurnRate * UGameplayStatics::GetWorldDeltaSeconds(this);
+
+    AddActorLocalRotation(DeltaRotation, true);
+
 }
