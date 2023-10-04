@@ -54,5 +54,21 @@
 			"@C:\\Users\\locoq\\repo\\ToonTanks\\.vscode\\compileCommands_Default\\ToonTanks.249.rsp"
 		],
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\locoq\\repo\\ToonTanks\\Source\\ToonTanks\\Tower.cpp",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\BuildTools\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe",
+			"@C:\\Users\\locoq\\repo\\ToonTanks\\.vscode\\compileCommands_Default\\ToonTanks.249.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\locoq\\repo\\ToonTanks\\Source\\ToonTanks\\Tower.h",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\BuildTools\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe",
+			"@C:\\Users\\locoq\\repo\\ToonTanks\\.vscode\\compileCommands_Default\\ToonTanks.249.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Source"
 	}
 ]

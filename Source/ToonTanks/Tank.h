@@ -35,10 +35,10 @@ private:
 	class UCameraComponent* tankCamera;
 
 	UPROPERTY(EditAnywhere, Category = "Movement", BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	float Speed = 600.f;
+	float Speed = 800.f;
 
 	UPROPERTY(EditAnywhere, Category = "Movement", BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	float TurnRate = 120.f;
+	float TurnRate = 180.f;
 	
 	void Move(float value);
 
