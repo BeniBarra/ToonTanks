@@ -47,5 +47,6 @@ void ABasePawn::Fire()
 
 	//DrawDebugSphere(GetWorld(), SpawnPointLocation, 10.f, 12, FColor::Red, false, 3.f);
 	
-	GetWorld()->SpawnActor<AProjectile>(ProjectileClass,SpawnPointLocation, SpawnPointRotation);
+	auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileClass,SpawnPointLocation, SpawnPointRotation);
+	Projectile->SetOwner(this);
 }
