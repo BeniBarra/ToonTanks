@@ -9,11 +9,11 @@
 
 ATank::ATank()
 {
-    tankSpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("Tank Spring Arm"));
-    tankSpringArm->SetupAttachment(RootComponent);
+    TankSpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("Tank Spring Arm"));
+    TankSpringArm->SetupAttachment(RootComponent);
 
-    tankCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("Tank Camera"));
-    tankCamera->SetupAttachment(tankSpringArm);
+    TankCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("Tank Camera"));
+    TankCamera->SetupAttachment(TankSpringArm);
 }
 
 // Called to bind functionality to input
@@ -32,7 +32,7 @@ void ATank::BeginPlay()
 {
 	Super::BeginPlay();
 
-    PlayerControllerRef = Cast<APlayerController>(GetController());
+    TankPlayerController = Cast<APlayerController>(GetController());
 }
 
 // Called every frame
@@ -40,13 +40,20 @@ void ATank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-    if(PlayerControllerRef)
+    if(TankPlayerController)
     {
         FHitResult HitResult;
-        PlayerControllerRef->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, HitResult);
+        TankPlayerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, HitResult);
 
         RotateTurret(HitResult.ImpactPoint);
     }
+}
+
+void ATank::HandleDestruction()
+{
+    Super::HandleDesturction();
+    SetActorHiddenInGame(true);
+    SetActorTickEnabled(false);
 }
 
 void ATank::Move(float Value)
