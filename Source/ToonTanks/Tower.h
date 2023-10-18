@@ -18,6 +18,8 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
+	void HandleDestruction();
+
 protected:
 
 	//Called When the game starts or when spawned

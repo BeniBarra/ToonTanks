@@ -23,16 +23,20 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void HandleDestruction();
+
+	APlayerController* GetTankPlayerController() const {return TankPlayerController;}
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 private:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
-	class USpringArmComponent* tankSpringArm;
+	class USpringArmComponent* TankSpringArm;
 
 	UPROPERTY(VisibleAnywhere, Category = "Components")
-	class UCameraComponent* tankCamera;
+	class UCameraComponent* TankCamera;
 
 	UPROPERTY(EditAnywhere, Category = "Movement", BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	float Speed = 800.f;
@@ -45,6 +49,6 @@ private:
 	void Turn(float value);
 
 	UPROPERTY()
-	APlayerController* PlayerControllerRef;
+	APlayerController* TankPlayerController;
 
 };
